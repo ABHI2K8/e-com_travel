@@ -15,6 +15,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Always include this at the end of config.php
-require_once BASE_PATH . '/header.php';
+
+
 ?>

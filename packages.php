@@ -7,7 +7,7 @@ $sql = "SELECT * FROM packages";
 $result = $conn->query($sql);
 ?>
 
-<div class="container mt-5">
+<div class="container">
     <h2 class="mb-4">Travel Packages</h2>
     <div class="row">
         <?php if ($result->num_rows > 0):
