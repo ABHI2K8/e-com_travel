@@ -3,7 +3,7 @@
 $host = 'localhost';
 $user = 'root';
 $password = '';
-$dbname = 'travel_agency';
+$dbname = 'ecomtravel_db';
 
 // File path configuration
 define('BASE_PATH', realpath(dirname(__FILE__)));
