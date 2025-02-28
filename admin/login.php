@@ -20,14 +20,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($result->num_rows === 1) {
         $user = $result->fetch_assoc();
+        
+        // Verify password
         if (password_verify($password, $user['password'])) {
             $_SESSION['admin_logged_in'] = true;
             $_SESSION['admin_user_id'] = $user['id'];
             header('Location: dashboard.php');
             exit();
+        } else {
+            $error = 'Invalid password!';
         }
+    } else {
+        $error = 'User not found!';
     }
-    $error = 'Invalid username or password!';
     $stmt->close();
 }
 ?>
