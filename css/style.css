@@ -201,3 +201,90 @@ body {
         font-size: 1rem;
     }
 }
+/* Header Styles */
+.header {
+    margin-bottom: 80px; /* Adjust for fixed navbar */
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.navbar-brand i {
+    color: #0d6efd; /* Bootstrap primary color */
+}
+
+.nav-link {
+    font-size: 1.1rem;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #0d6efd !important;
+}
+
+.nav-link.active {
+    color: #0d6efd !important;
+    font-weight: 600;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #1a1a1a;
+    padding-top: 40px;
+}
+
+.footer h5 {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+.footer p, .footer ul {
+    color: #a0a0a0;
+}
+
+.footer a {
+    color: #a0a0a0;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer a:hover {
+    color: #0d6efd;
+}
+
+.social-icons a {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #0d6efd;
+}
+
+.newsletter-form .form-control {
+    border-radius: 0;
+}
+
+.newsletter-form .btn {
+    border-radius: 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .footer .col-md-4 {
+        margin-bottom: 30px;
+    }
+
+    .footer h5 {
+        font-size: 1.1rem;
+    }
+}
