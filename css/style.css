@@ -288,3 +288,23 @@ body {
         font-size: 1.1rem;
     }
 }
+/* Mobile Menu Fix */
+.navbar-collapse {
+    max-height: 75vh;
+    overflow-y: auto;
+}
+
+@media (max-width: 991px) {
+    .navbar-nav {
+        padding: 20px 0;
+    }
+    .nav-item {
+        margin: 5px 0;
+    }
+    .navbar-toggler {
+        border-color: rgba(255,255,255,0.5);
+    }
+    .navbar-toggler:focus {
+        box-shadow: 0 0 5px rgba(255,255,255,0.5);
+    }
+}

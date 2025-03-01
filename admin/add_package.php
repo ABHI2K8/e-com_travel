@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 VALUES (?, ?, ?, ?, ?)");
         $stmt->bind_param("ssdss", $name, $description, $price, $new_filename, $trip_details);
         
-        if (!$stmt->execute())) {
+        if (!$stmt->execute()) {
             throw new Exception("Database error: " . $stmt->error);
         }
 
