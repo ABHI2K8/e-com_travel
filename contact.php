@@ -16,13 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = 'Invalid email format!';
     } else {
-        $stmt = $conn->prepare("INSERT INTO contacts (name, email, subject, message) VALUES (?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO contact_messages (name, email, subject, message, created_at) VALUES (?, ?, ?, ?, NOW())");
         $stmt->bind_param("ssss", $name, $email, $subject, $message);
-        
+
         if ($stmt->execute()) {
             $success = 'Message sent successfully!';
         } else {
-            $error = 'Error sending message: ' . $conn->error;
+            $error = 'Error sending message: ' . $conn->error; // Debugging: Display database error
         }
         $stmt->close();
     }

@@ -79,6 +79,7 @@ $packages = $result->fetch_all(MYSQLI_ASSOC);
                                 <h4 class="text-primary">$<?= number_format($package['price'], 2) ?></h4>
                                 <a href="booking.php?package_id=<?= $package['id'] ?>" 
                                    class="btn btn-success">Book Now</a>
+                                <a href="package-detail.php?id=<?= $package['id'] ?>" class="btn btn-success">View Details</a>
                             </div>
                         </div>
                     </div>

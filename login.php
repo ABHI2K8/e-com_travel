@@ -1,5 +1,9 @@
 <?php
-session_start();
+// Start session if not already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require 'config.php';
 
 // Redirect if already logged in
@@ -10,7 +14,7 @@ if (isset($_SESSION['user_id'])) {
 
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $email = $_POST['username']; // Update variable name for clarity
     $password = $_POST['password'];
 
     // Validate inputs
@@ -18,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'All fields are required!';
     } else {
         // Check if user exists
-        $stmt = $conn->prepare("SELECT id, name, password FROM users WHERE email = ?");
+        $stmt = $conn->prepare("SELECT id, name, password FROM users WHERE email = ?"); // Use 'email' column
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -96,9 +100,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         <form method="POST">
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email Address</label>
-                                <input type="email" name="email" class="form-control" id="email" 
-                                       placeholder="Enter your email" required>
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" name="username" class="form-control" id="username" 
+                                       placeholder="Enter your username" required>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
@@ -112,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         <div class="mt-3 text-center">
                             <p>Don't have an account? <a href="register.php">Register here</a></p>
-                            <p><a href="forgot_password.php">Forgot your password?</a></p>
+                            <!-- Removed the "Forgot your password?" link -->
                         </div>
                     </div>
                 </div>

@@ -10,6 +10,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Header -->
@@ -52,6 +54,14 @@ $current_page = basename($_SERVER['PHP_SELF']);
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link <?= ($current_page == 'register.php') ? 'active' : '' ?>" href="register.php">Register</a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (isset($_SESSION['user_id']) && isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
+                            <li class="nav-item">
+                                <a class="nav-link <?= ($current_page == 'admin_dashboard.php') ? 'active' : '' ?>" href="admin_dashboard.php">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link <?= ($current_page == 'contact_messages.php') ? 'active' : '' ?>" href="contact_messages.php">Contact Messages</a>
                             </li>
                         <?php endif; ?>
                     </ul>

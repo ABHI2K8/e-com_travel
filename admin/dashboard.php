@@ -18,6 +18,13 @@ $bookings = $conn->query("
 
 $contacts = $conn->query("SELECT * FROM contacts ORDER BY created_at DESC LIMIT 10");
 $packages = $conn->query("SELECT * FROM packages ORDER BY id DESC LIMIT 5");
+
+// Fetch recent contact messages
+$messages = [];
+$stmt = $conn->prepare("SELECT * FROM contact_messages ORDER BY created_at DESC LIMIT 5");
+$stmt->execute();
+$result = $stmt->get_result();
+$messages = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -129,6 +136,43 @@ $packages = $conn->query("SELECT * FROM packages ORDER BY id DESC LIMIT 5");
                     </div>
                 <?php else: ?>
                     <div class="alert alert-info">No packages found</div>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <!-- Recent Contact Messages Section -->
+        <div class="card mt-4">
+            <div class="card-header bg-primary text-white">
+                <h5>Recent Contact Messages</h5>
+            </div>
+            <div class="card-body">
+                <?php if (!empty($messages)): ?>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Subject</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($messages as $index => $message): ?>
+                                    <tr>
+                                        <td><?= $index + 1 ?></td>
+                                        <td><?= htmlspecialchars($message['name']) ?></td>
+                                        <td><?= htmlspecialchars($message['email']) ?></td>
+                                        <td><?= htmlspecialchars($message['subject']) ?></td>
+                                        <td><?= date('F j, Y, g:i a', strtotime($message['created_at'])) ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php else: ?>
+                    <div class="alert alert-info">No recent messages found.</div>
                 <?php endif; ?>
             </div>
         </div>

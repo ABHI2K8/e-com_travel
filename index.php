@@ -2,6 +2,9 @@
 require 'config.php'; // Include database connection
 include 'header.php'; // Include header
 
+// Check if the user is authenticated
+checkAuthentication();
+
 // Fetch featured packages
 $featured_packages = [];
 try {

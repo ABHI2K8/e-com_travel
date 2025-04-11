@@ -1,0 +1,45 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    border: none;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(90deg, #0056b3, #007bff);
+    transform: scale(1.05);
+}
+
+/* Footer */
+.footer {
+    background: #1a1a1a;
+    color: #ccc;
+}
+
+.footer a {
+    color: #ccc;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #fff;
+}
+
+.footer .social-icons a {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    transition: transform 0.3s ease;
+}
+
+.footer .social-icons a:hover {
+    transform: scale(1.2);
+}
