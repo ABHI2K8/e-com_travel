@@ -22,7 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
-        
+        $result = $stmt->get_result();
+        $stmt->close();
         if ($stmt->get_result()->num_rows > 0) {
             $error = 'Email already registered!';
         } else {
