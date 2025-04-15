@@ -8,15 +8,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
-    $phone = htmlspecialchars($_POST['phone']);
+    $phone = preg_replace('/\D/', '', $_POST['phone']); // Remove non-digit characters
 
     // Validation
-    if (empty($name) || empty($email) || empty($password)) {
+    if (empty($name) || empty($email) || empty($password) || empty($phone)) {
         $error = 'All fields are required!';
     } elseif ($password !== $confirm_password) {
         $error = 'Passwords do not match!';
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = 'Invalid email format!';
+    } elseif (strlen($phone) !== 10) {
+        $error = 'Phone number must be 10 digits!';
     } else {
         // Check existing email
         $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
@@ -24,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
-        if ($stmt->get_result()->num_rows > 0) {
+        if ($result->num_rows > 0) {
             $error = 'Email already registered!';
         } else {
             // Hash password
@@ -85,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Phone</label>
-                                <input type="tel" name="phone" class="form-control">
+                                <input type="tel" name="phone" class="form-control" pattern="\d{10}" title="Phone number must be 10 digits" required>
                             </div>
                             <button type="submit" class="btn btn-primary w-100">Register</button>
                         </form>
